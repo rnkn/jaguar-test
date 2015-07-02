@@ -1,0 +1,333 @@
+@charset "utf-8";
+/******************************************************************************
+  JAGUAR GAME SKIN - MONKEY ISLAND
+******************************************************************************/
+
+/******************************************************************************/
+/* I. MONKEY ISLAND DIMENSIONS
+/******************************************************************************/
+/* MAIN GAME HEIGHT */
+#JAG_SaveMenu_Overlay, #JAG_Die_Overlay, .JAG_Adventure, #JAG_Stats_Overlay {height:738px;}
+
+/* PANEL LEFT SIDE (VERBS) / RIGHT SIDE (INVENTORY [FULL WIDTH - JAG_VERBS WIDTH INCLUDING PADDING]) */
+#JAG_Verbs {width:494px;}		
+#JAG_Inventory {width:526px;}								
+
+/* VERBS AND VERB COLUMNS */
+#JAG_Verbs ul {padding-top:15px}							
+#JAG_Verbs ul.JAG_Column1 {width:145px; padding-left:21px;} 
+#JAG_Verbs ul.JAG_Column2 {width:195px;}					
+#JAG_Verbs ul.JAG_Column3 {width:120px;}					
+#JAG_Verbs ul li {height:68px;}
+
+/* BOTTOM PANEL, DESCRIPTION BAR AND ELEMENTS */
+#JAG_Panel {width:1020px; height:210px;}
+#JAG_Verbs, #JAG_Inventory, 
+#JAG_dialogue, #JAG_Inv_Arrows {height:210px;}				
+#JAG_Desc {height:50px; padding:6px 0;}						
+
+/* INVENTORY (WIDTH=[JAG_INVENTORY - JAG_INV_ARROWS]) */
+#JAG_Inventory ul {width:476px;}
+#JAG_Inv_Arrows {width:50px;}								
+#JAG_Inv_Arrows div {width:50px; height:103px; margin-bottom:4px;}
+#JAG_Inventory ul li {margin:0 0 4px 4px; width:115px; height:103px;}	
+
+/* TEASER SCREEN */
+#JAG_Teaser {width:1024px; padding-top:240px;}
+#JAG_Teaser img {width:200px; margin-left:160px;}
+
+/* CREDITS */
+.JAG_Credits {width:650px; height:auto;}
+.JAG_Credits ul li {width:100%; height:auto;}
+
+
+/******************************************************************************/
+/* II. MONKEY ISLAND FONTS     																 
+/******************************************************************************/
+@font-face {font-family:'onesizeregular';
+    src: url('fonts/onesize_.eot');
+    src: url('fonts/onesize_.eot?#iefix') format('embedded-opentype'),
+         url('fonts/onesize_.woff') format('woff'),
+         url('fonts/onesize_.ttf') format('truetype'),
+         url('fonts/onesize_.svg#onesizeregular') format('svg');
+    font-weight: normal;font-style: normal;}
+@font-face {font-family: 'onesize_reverseregular';
+    src: url('fonts/onesr___.eot');
+    src: url('fonts/onesr___.eot?#iefix') format('embedded-opentype'),
+         url('fonts/onesr___.woff') format('woff'),
+         url('fonts/onesr___.ttf') format('truetype'),
+         url('fonts/onesr___.svg#onesize_reverseregular') format('svg');
+    font-weight: normal;font-style: normal;}
+	
+	
+/******************************************************************************/
+/* III. MONKEY ISLAND TEXT STYLING     																 
+/******************************************************************************/	
+/* DESCRIPTION BAR */
+#JAG_Desc p, #JAG_Desc span {
+	font-family:'onesizeregular',sans; 
+	font-size:22px; 
+	line-height:30px; 
+	text-align:center;}
+
+/* VERBS */
+#JAG_Verbs ul li {
+	font-family:'onesize_reverseregular',sans; 
+	font-size:38px; 
+	letter-spacing:0.5px;}	
+
+/* SUBTITLES */
+#JAG_Scene_Dialogue {
+	font-family:'onesizeregular',sans; 
+	font-size:22px; 
+	line-height:26px;
+	text-shadow:-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;}
+
+/* SKIP CUTSCENE TEXT */
+#JAG_Scene_Skip {
+	color:#FFF; 
+	text-align:left;
+	font-size:20px; 
+	top:5px;
+	right:20px;
+	opacity:0.5;
+	font-family:'onesizeregular',sans;}	
+
+/* CHARACTER DIALOGUE */
+.JAG_question {
+	font-family:'onesizeregular',sans; 
+	font-size:20px;
+	border-bottom:1px solid transparent;}
+.JAG_Char_Dialogue {
+	font-family:'onesizeregular',sans; 
+	font-size:22px; 
+	text-shadow:-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;}
+
+/* LOAD/SAVE MENU */
+.JAG_SaveMenu p, .JAG_SaveMenu .JAG_Save, .JAG_SaveMenu .JAG_Load, 
+.JAG_SaveMenu .JAG_Delete, .JAG_SaveMenu .JAG_Cancel, .JAG_SaveInput,
+.JAG_Restart, .JAG_Quit, .JAG_Die_Restart {
+	font-family:'onesizeregular',sans; 
+	font-size:36px; 
+	line-height:20px;}
+.JAG_SaveMenu p, .JAG_SaveInput {font-size:20px;}
+.JAG_SaveMenu .JAG_Save, .JAG_SaveMenu .JAG_Load, .JAG_SaveMenu 
+.JAG_Delete, .JAG_SaveMenu .JAG_Cancel, .JAG_Restart, .JAG_Quit, .JAG_Die_Restart {
+	font-size:25px; 
+	text-align:center;}
+
+/* PLAYER STATS MENU */
+#JAG_ID_Stats {
+	font-family:'onesizeregular',sans; 
+	font-size:16px;}
+#JAG_ID_Stats p.game_title { font-size:18px; }	
+#JAG_ID_Stats p.JAG_Stat, #JAG_ID_Stats span.JAG_Score { line-height:20px; }
+#JAG_ID_Stats h2 { font-size:22px; }
+
+/* DEBUG CONSOLE */
+#JAG_Debug_Window div, #JAG_Debug_Window, #JAG_Debug_Window h2, #JAG_EXP {font-family:Courier,sans;}
+#JAG_Debug_Window input[type=text] {font-size:14px;}
+#JAG_Debug_Window h2 {
+	letter-spacing:-1px; 
+	font-size:18px;}
+
+/* PRELOADER SCREEN */
+div.JAG_Preloader p {
+	font-family:'onesizeregular',sans; 
+	font-size:22px;}
+#JAG_Teaser h1 {
+	font-family:'onesizeregular',sans; 
+	font-size:22px; 
+	line-height:36px;}
+	
+/* QUESTIONS PANEL */
+#JAG_dialogue {
+	position:absolute; 
+	z-index:11; 
+	display:none;}
+.JAG_question {
+	border-bottom:1px solid transparent; 
+	padding:0px 0px 2px 25px; 
+	margin-top:10px;}
+
+/* DIE SCREEN TEXT */
+.JAG_Die_Restart {color:#ca52ca;}
+#JAG_Die_Overlay p {
+	font-family:'onesizeregular',sans; 
+	font-size:22px;
+	line-height:36px;
+	color:#7c2c7c;
+	margin-top:20%; 
+	margin-bottom:20px;}
+	
+
+/******************************************************************************/
+/* IV. MONKEY ISLAND COLOR SCHEME
+/******************************************************************************/
+/* MAIN GAME CONTAINER */
+.JAG_Adventure {background-color:#000000;}
+
+/* DESCRIPTION BAR */
+#JAG_Desc {
+	background-color:#000000; 
+	color:#7c2c7c;}
+#JAG_Desc p, #JAG_Desc span {color:#7c2c7c;}
+
+/* BOTTOM PANEL */
+#JAG_Panel {background-color:#000000;}
+
+/* VERBS */
+#JAG_Verbs ul li {color:#7c2c7c;}
+#JAG_Verbs ul li.verb_hovered {color:#ca52ca;}
+
+/* INVENTORY ITEMS */
+#JAG_Inventory ul li {
+	background:#1d0a1e; 
+	-webkit-transition:all 0.15s ease;
+	-o-transition:all 0.15s ease; 
+	-moz-transition:all 0.15s ease;
+	-ms-transition:all 0.15s ease; 
+	transition:all 0.15s ease;}	
+#JAG_Inventory ul li:hover {background:#38133a;}
+
+/* CHARACTER DIALOGUE */
+#JAG_Scene_Dialogue, .JAG_Char_Dialogue {color:#FFFFFF;}
+#JAG_dialogue {background:#000000;}
+.JAG_question {color:#7c2c7c;}
+.JAG_question:hover {border-bottom:1px solid #290F2B;
+	color:#FFF;
+	background: rgb(0,0,0); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(41,15,43,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(41,15,43,1)));
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(41,15,43,1) 100%);
+	background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(41,15,43,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(41,15,43,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(41,15,43,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#290f2b',GradientType=0 );}
+
+/* LOAD/SAVE MENU */
+.JAG_SaveMenu {
+	background-color:#2d0f2e;
+	color:#ca52ca; 
+	border:6px double #ca52ca;}
+.JAG_SaveMenu .JAG_Save, .JAG_SaveMenu .JAG_Load, .JAG_SaveMenu .JAG_Delete, 
+.JAG_SaveMenu .JAG_Cancel, .JAG_Restart, .JAG_Quit, .JAG_Die_Restart {background:#2d0f2e;}
+.JAG_SaveMenu .JAG_Save:hover, .JAG_SaveMenu .JAG_Load:hover,  
+.JAG_SaveMenu .JAG_Delete:hover, .JAG_Cancel:hover, .JAG_Restart:hover, .JAG_Quit:hover {
+	background:#ca52ca; 
+	color:#2d0f2e;}
+	
+/* PLAYER STATS MENU */
+#JAG_ID_Stats {
+	background:#2d0f2e; 
+	color:#ca52ca; 
+	border:8px solid #ca52ca;}
+#JAG_ID_Stats h2 {
+	background:#ca52ca;
+	color:#2d0f2e;}
+#JAG_ID_Stats p.JAG_Progress { background:#401841; }
+#JAG_ID_Stats p.JAG_Progress span { background:#ca52ca; }	
+
+/* DEBUG MENU */
+#JAG_Debug_Window div, #JAG_Debug_Window, #JAG_Debug_Window h2 {color:#ffe400;}
+#JAG_EXP, #JAG_Debug_currentScene, div.JAG_Preloader p {color:#FFF;}
+#JAG_Debug_Window input[type=text] {color:#333;}
+#JAG_jumpToScene {
+	background-color:#ffe400; 
+	color:#0226ff!important;}
+
+/* TEASER SCREEN TEXT */
+#JAG_Teaser h1 {color:#FFFFFF;}
+
+
+/******************************************************************************/
+/* V. MONKEY ISLAND INVENTORY
+/******************************************************************************/
+#JAG_Inv_Arrows div.JAG_Arrow_Up {background:url(../images/mi_arrow_up.png) no-repeat; opacity:0.5;}
+#JAG_Inv_Arrows div.JAG_Arrow_Down {background:url(../images/mi_arrow_down.png) no-repeat; opacity:0.5;}
+#JAG_Inv_Arrows div.JAG_Arrow_Up:hover, #JAG_Inv_Arrows div.JAG_Arrow_Down:hover {opacity:1;}
+
+
+/******************************************************************************/
+/* VI. MONKEY ISLAND SAVE MENU
+/******************************************************************************/
+#JAG_SaveMenu_Overlay, #JAG_Die_Overlay, #JAG_Stats_Overlay {background:#000000;}
+.JAG_SaveInput { background:#2d0f2e; color:#ca52ca; border:3px outset #ca52ca;}	
+.JAG_SaveInput:hover { background:#5b225b; border:3px outset #ad41ad; }
+.JAG_disabledInput {opacity:0.2; }
+.JAG_disabledInput:hover {background:#000; border:3px outset #ca52ca;}
+
+/******************************************************************************/
+/* VII. MONKEY ISLAND CREDITS
+/******************************************************************************/
+.JAG_Credits {top:500px; right:0;}
+.JAG_Credits ul li {margin-bottom:60px;}
+.JAG_Credits_Title {
+	color:#FFF; 
+	font-family:'onesizeregular',sans; 
+	text-shadow:-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;	
+	font-size:26px;
+	font-weight:bold;
+	line-height:40px;}
+.JAG_Credits_Names {
+	color:#FFF; 
+	font-family:'onesizeregular',sans; 
+	text-shadow:-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;	
+	font-size:22px;
+	line-height:24px;}
+	
+/******************************************************************************/
+/* VIII. MONKEY ISLAND CURSORS
+/******************************************************************************/
+#JAG_Cursor {
+	width:47px; height:52px;
+	margin-left:22px; margin-top:23px;
+	background:transparent url(../images/cursors/monkey_island/crosshair.gif) no-repeat;}
+.JAG_Wait_Cursor {
+	background:transparent url(../images/cursors/monkey_island/not_allowed.gif) no-repeat!important;}
+
+
+/******************************************************************************/
+/* IX. ADDONS
+/******************************************************************************/
+/* RIDDLES AND PASSWORDS */
+#JAG_Riddle_Answer {
+	background:rgba(0,0,0,0.5) url(../tiles/bg_118.png) repeat; 
+	border:3px solid #7c2c7c;
+	width:1018px;}
+	
+#JAG_Riddle_Answer input {
+	font-family:'onesizeregular',sans; 
+	font-size:24px;
+	line-height:36px;
+	color:#FFFFFF;
+	padding:10px;
+	background:#7c2c7c;}
+
+/* MAP CUTSCENES */
+.JAG_Destination_Popup {
+	font-family:'onesizeregular',sans; 
+	color:#000000;
+	text-shadow:-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;}
+	
+/* PUZZLE TIMERS */
+.JAG_Timed_Objective {
+	color:#FFF; font-size:22px;
+	font-family:'onesizeregular',sans;}
+
+.JAG_PuzzleTimer p.JAG_timer_countdown { 
+	color:#FFF; font-size:22px;
+	font-family:'onesizeregular',sans;}
+
+.JAG_PuzzleTimer_1 {left:20px; top:10px;}
+
+.JAG_PuzzleTimer_2 { 
+	text-align:center;
+	background:#000;
+	width:100%;
+	padding:5px;}
+.JAG_PuzzleTimer_2 p {color:#ec4c18;}
+.JAG_PuzzleTimer_2 span {margin-left:10px;}
+
+.JAG_PuzzleTimer_3 { top:430px; right:15px; }
+.JAG_PuzzleTimer_3 p {font-size:16px;}	

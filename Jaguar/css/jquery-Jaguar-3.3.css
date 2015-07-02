@@ -1,0 +1,314 @@
+@charset "utf-8";
+/******************************************************************************
+  $Jaguar v3.3 || CRUSADER12 || EXCLUSIVE TO CODECANYON || CORE CSS FILE
+  
+  LAYERING REFERENCE:
+  Path:		  			  		2
+  Item [type=object]:	  		3
+  Character:  			  		4
+  Item [type=layer]: 	  		6	
+  Item [type=exit]:			 	7  
+  Foreground: 			  		9  
+  Weather Canvas:				11
+  Day/Night Cycling Layer:      12
+  Fog Effects Canvas:			13
+  Twinkling Stars Canvas:		13
+  Subtitles:					14
+  Credits:						14
+  Save Menu:					15(Overlay)/20(Menu)
+  Riddle Answer Box:			16
+  Map Desintation Marker/Popup: 17/18
+  Puzzle Countdown Timer:		99
+  
+******************************************************************************/
+
+/******************************************************************************/
+/* I. RESET / CSS SETUP
+/******************************************************************************/
+.JAG_Adventure * {vertical-align:baseline; margin:0; font-size:100%; padding:0;	line-height:100%; border:0; cursor:inherit; box-sizing:content-box;
+	/* AVOID OPENING MOBILE CONTEXT MENU ON TAPHOLD */
+	-webkit-touch-callout:none; -moz-touch-callout:none; -ms-touch-callout:none; -o-touch-callout:none; touch-callout:none; 
+	/* AVOID HIGHLIGHTING ON TAP */
+	-webkit-tap-highlight-color: rgba(0,0,0,0); tap-highlight-color: rgba(0,0,0,0); 
+	/* AVOID CHANGING TEXT SIZE ON ORIENTATION CHANGE */
+	-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-adjust:none; -o-text-size-adjust:none; text-size-adjust:none; 
+	/* AVOID SELECTING TEXT AND IMAGES */
+	-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; -o-user-select:none; user-select:none;
+	/* NOTE! FOR PIXELATED ADVENTURES ONLY! REMOVE IF YOU AREN'T USING PIXEL ART */
+	-webkit-image-rendering:pixelated; -o-image-rendering:pixelated; -ms-image-rendering:pixelated; -moz-image-rendering:pixelated; image-rendering:pixelated;}
+
+/* FORCE GPU */
+.JAG_DayNightCycle, .JAG_Foreground, ul.JAG_Chapter li, ul.JAG_Chapter li .JAG_Background, 
+ul.JAG_Chapter li .JAG_Item, ul.JAG_Chapter li .JAG_Char, .JAG_Char img, ul.JAG_Chapter li .JAG_Aux_Char, .JAG_Aux_Char img, #JAG_Cursor {
+	-o-transform:translate3d(0,0,0); -moz-transform:translate3d(0,0,0); -ms-transform:translate3d(0,0,0); transform:translate3d(0,0,0);}
+.JAG_clear {clear:both;}
+
+
+
+/****************************************************************************/
+/* II. DIMENSIONS - ALL DIMENSIONS ARE LISTED HERE TO EASE WITH ADJUSTMENT. */
+/****************************************************************************/
+/* MAIN VIEWPORT DIMENSIONS */
+ul.JAG_Chapter, ul.JAG_Chapter li, 
+#JAG_Desc, #JAG_Panel, #JAG_Debug, div.JAG_Preloader,
+.JAG_Foreground, .JAG_Foreground img,
+#JAG_Weather, #JAG_Fog, div.JAG_Stars,
+.JAG_DayNightCycle {width:100%; height:461px;}			
+
+/* MAIN GAME CONTAINER */
+.JAG_Adventure {cursor:none;}
+.JAG_Adventure, #JAG_SaveMenu_Overlay, #JAG_Die_Overlay, #JAG_Stats_Overlay, 
+#JAG_Scene_Dialogue, #JAG_dialogue {width:1024px;} 								
+
+/* LOAD/SAVE/DIE/STATS MENUS */
+.JAG_SaveMenu {width:700px; height:460px; }					
+.JAG_SaveMenu_Left {width:455px; height:460px;}				
+.JAG_SaveMenu_Right {width:200px; height:460px;}
+#JAG_Die_Overlay p {width:700px; margin:0 auto;}
+#JAG_ID_Stats {width:700px; height:auto;}
+
+/* DEBUG CONSOLE */
+#JAG_Debug_Window {width:600px; height:250px;}
+#JAG_Debug_Window h2, #JAG_EXP {width:100%; height:25px;}
+
+
+/******************************************************************************/
+/* III. DEFAULT INTERFACE STYLING
+/******************************************************************************/
+/* MAIN GAME CONTAINER / HIDE CONTAINERS AT START */
+.JAG_Adventure {overflow:hidden; position:relative;}
+ul.JAG_Chapter, #JAG_Verbs, #JAG_Inventory, div.JAG_Item {display:none;}
+#JAG_Panel, #JAG_Desc {display:none; opacity:0;}
+
+/* TEASER AND PRELOADER SCREENS */
+#JAG_Teaser {display:none; opacity:0;}
+#JAG_Teaser h1 {padding-top:80px;}
+#JAG_Teaser img {float:left; margin-right:20px;}
+.JAG_Preloader {margin:0 auto; position:absolute;}
+.JAG_Preloader img {margin:0 auto; display:block; margin-top:250px; margin-bottom:60px;}
+.JAG_Preloader p {text-align:center;}
+
+/* CHAPTER CONTAINER */
+ul.JAG_Chapter {position:relative; list-style-type:none; overflow:hidden;}
+
+/* SCENE CONTAINER, FOREGROUND AND PATHFINDING CANVAS */
+ul.JAG_Chapter li {position:relative; display:none; opacity:0;}
+.JAG_Foreground, .JAG_Foreground img {position:absolute; z-index:9; pointer-events:none;}
+.JAG_Canvas {position:absolute; z-index:2; top:0; left:0; display:none;}
+
+/* DESCRIPTION BAR AND BOTTOM PANEL */
+#JAG_Desc, #JAG_Panel {display:none;}
+
+/* VERBS */
+#JAG_Verbs {float:left;}
+#JAG_Verbs ul {list-style-type:none; float:left;}
+#JAG_Verbs ul li {-webkit-transition:all 0.35s ease; -o-transition:all 0.35s ease; -moz-transition:all 0.35s ease; -ms-transition:all 0.35s ease; transition:all 0.35s ease;}
+
+/* INVENTORY ITEMS */
+#JAG_Inventory {float:right; overflow:hidden;}
+#JAG_Inventory ul {list-style-type:none; float:right; -webkit-transition:all 0.5s ease; -o-transition:all 0.5s ease; -moz-transition:all 0.5s ease; -ms-transition:all 0.5s ease; transition:all 0.5s ease;}
+#JAG_Inventory ul li {float:left; -webkit-transition:all 0.15s ease; -o-transition:all 0.15s ease; -moz-transition:all 0.15s ease; -ms-transition:all 0.15s ease; transition:all 0.15s ease;}	
+#JAG_Inventory ul li img {opacity:0;}
+ul.JAG_Chapter li .JAG_Item {position:absolute; z-index:6; background:url(../items/blank.gif) repeat;} /* INVENTORY ITEMS - MUST USE BLANK.GIF TO GIVE LAYOUT TO IE */
+#JAG_Inv_Arrows {float:left;}
+#JAG_Inv_Arrows div.JAG_Arrow_Up, 
+#JAG_Inv_Arrows div.JAG_Arrow_Down {visibility:hidden; -webkit-transition:opacity 0.5s ease; -o-transition:opacity 0.5s ease; -moz-transition:opacity 0.5s ease; -ms-transition:opacity 0.5s ease; transition:opacity 0.5s ease;}
+#JAG_Inventory ul li img {-moz-transform:scale(1,1); -webkit-transform:scale(1,1); -ms-transform:scale(1,1); -o-transform:scale(1,1); transform:scale(1,1);
+	-webkit-transition:all 0.15s ease; -o-transition:all 0.15s ease; -moz-transition:all 0.15s ease; -ms-transition:all 0.15s ease; transition:all 0.15s ease;}
+#JAG_Inventory ul li img:hover {-o-transform:scale(1.1,1.1); -webkit-transform:scale(1.1,1.1); -moz-transform:scale(1.1,1.1); -ms-transform:scale(1.1,1.1); transform:scale(1.1,1.1);}
+
+/* DEFAULT TEXT STYLING */
+.JAG_Adventure strong {font-weight:bold;}
+.JAG_Adventure em {font-style:italic;}
+
+/* CHARACTER DIALOGUE AND SUBTITLES */
+.JAG_Char_Dialogue, #JAG_dialogue {opacity:0;}
+#JAG_dialogue {position:absolute; z-index:11; display:none;}
+.JAG_Char_Dialogue {/* DO NOT CHANGE MAXWIDTH */max-width:70%!important; text-align:center; position:absolute; z-index:15; padding:10px 0; display:none;}
+.JAG_question {padding:0px 0px 2px 25px; margin-top:10px;}	
+#JAG_Scene_Dialogue {position:absolute; z-index:14; padding:10px 0; opacity:1; text-align:center; pointer-events:none;}
+#JAG_Scene_Skip {position:absolute; z-index:14; padding:10px 0;}
+
+/* CHARACTERS */
+ul.JAG_Chapter li .JAG_Char {pointer-events:none;}
+ul.JAG_Chapter li .JAG_Char, ul.JAG_Chapter li .JAG_Aux_Char {position:absolute; z-index:4; }
+ul.JAG_Chapter li .JAG_Aux_Char img {pointer-events:inherit;}
+
+/* DAY/NIGHT CYCLE, WEATHER, FOG AND STAR LAYERS */
+.JAG_DayNightCycle {position:absolute; z-index:12; pointer-events:none; opacity:0; background-repeat:repeat;}
+#JAG_Weather {position:absolute; z-index:11; pointer-events:none; }
+#JAG_Fog {position:absolute; z-index:10; pointer-events:none; }
+div.JAG_Stars {position:absolute; z-index:13; pointer-events:none; }
+								
+/* CUSTOM ANIMATED CURSORS */
+#JAG_Cursor {position:absolute; z-index:10000; pointer-events:none;}
+
+
+
+/******************************************************************************/
+/* SAVE MENU / DIE WINDOW 
+/******************************************************************************/
+#JAG_SaveMenu_Overlay, #JAG_Die_Overlay, #JAG_Stats_Overlay {position:absolute; z-index:15; display:none;}
+.JAG_SaveMenu {position:absolute; z-index:20; margin-top:130px; padding:25px 15px 15px 15px; display:none; }
+.JAG_SaveMenu_Left { float:left; padding-top:20px; }
+.JAG_SaveMenu_Right {margin-left:32px; float:left; padding-top:25px; }
+.JAG_SaveMenu p {text-align:center;}
+.JAG_SaveMenu .JAG_Load, .JAG_Cancel, .JAG_Delete, .JAG_Restart, .JAG_Quit {margin-top:4px; }
+.JAG_SaveMenu .JAG_Save, .JAG_SaveMenu .JAG_Load, .JAG_SaveMenu 
+.JAG_Delete, .JAG_Cancel, .JAG_Restart, .JAG_Quit, .JAG_Die_Restart {
+	display:inline-block;  padding:22px 10px; width:100%;
+	-webkit-transition:all 0.5s ease; -o-transition:all 0.5s ease; -moz-transition:all 0.5s ease; -ms-transition:all 0.5s ease; transition:all 0.5s ease;}
+.JAG_SaveInput {width:100%; height:30px; margin-top:5px; padding-left:15px; border-radius:0; border:0; outline:none; 
+	-moz-user-select:text; -webkit-user-select:text; -ms-user-select:text; user-select:text;}	
+.JAG_Die_Restart {padding-left:0; padding-right:0;}
+#JAG_Die_Overlay p {text-align:center;}
+.JAG_disabledInput {-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:text;}
+
+
+/******************************************************************************/
+/* PLAYER STATS WINDOW
+/******************************************************************************/
+#JAG_ID_Stats {position:absolute; z-index:19; padding:15px 0 0; display:none;}
+#JAG_ID_Stats p.game_title { text-align:center; padding:0; margin:0; margin-bottom:-10px; }
+#JAG_ID_Stats h2 {text-align:center; padding:7px 0; margin:25px 0; }        
+#JAG_ID_Stats .JAG_Stats_Left {width:335px; float:left; padding-top:10px;}
+#JAG_ID_Stats .JAG_Stats_Right {width:335px; float:left; padding-top:10px; margin-left:30px;}
+#JAG_ID_Stats .JAG_Stat_Line {width:100%; margin-bottom:15px; }
+#JAG_ID_Stats p.JAG_Stat { margin-left:10px; display:inline; }
+#JAG_ID_Stats .JAG_Score { float:right; display:inline; padding-left:10px; width:90px; }
+#JAG_ID_Stats p.JAG_Progress { width:90px; height:20px; padding:0; margin:0; display:inline; float:right; }
+#JAG_ID_Stats p.JAG_Progress span { display:block; width:0%; height:100%; padding:0; margin:0; 
+-o-transition:all 0.5s ease-in; -moz-transition:all 0.5s ease-in; -ms-transition:all 0.5s ease-in; 
+-webkit-transition:all 0.5s ease-in; transition:all 0.5s ease-in;}
+#JAG_ID_Stats .JAG_Objective { width:100%; margin:20px 0; clear:both; }
+#JAG_ID_Stats .JAG_Objective p.JAG_Stat { display:block; width:100%; margin-bottom:5px; }
+#JAG_ID_Stats .JAG_Objective p.JAG_Progress { width:560px; margin:0px 0px 25px 10px; float:left; display:block; }
+#JAG_ID_Stats .JAG_Objective span.JAG_Score { width:115px; text-align:right; padding:0; padding-right:15px; }
+
+
+
+/******************************************************************************/
+/* CREDITS
+/******************************************************************************/
+.JAG_Credits {position:absolute; z-index:14; pointer-events:none;}
+.JAG_Credits ul li {display:inline-block; text-align:center; opacity:inherit;}
+
+ 
+/******************************************************************************/
+/* DEBUG TOOLS 																  */
+/******************************************************************************/
+#JAG_Debug_Window {background:#0226ff; position:absolute; z-index:9999999999; border:5px double #ffe400; padding:15px 20px 20px 20px; display:none;}
+#JAG_Debug_Window h2, #JAG_EXP {text-align:center;}
+#JAG_Debug_Window h2 {width:100%; text-align:center; font-weight:bold; padding:0; margin:0;}
+#JAG_Debug_Window input {margin-bottom:8px;}
+#JAG_Debug_Window input[type=text] {margin-top:10px; padding:10px 5px; width:200px; cursor:text;}
+#JAG_jumpToScene {padding:9px 15px; float:right; font-weight:bold; margin-top:10px;}
+.JAG_charSpot {position:absolute; z-index:9999; width:5px; height:5px; background:#00ff1e; left:50%;}
+.JAG_charLines {border:2px solid red;}
+.JAG_itemLines {border:2px solid #a35b1b; opacity:0.95;}
+.JAG_midLine {width:2px;background:#91f1ff;position:absolute;top:0;z-index:9999;}
+.JAG_horizonLine, .JAG_GroundLine {height:2px;background:#ffe400;position:absolute;z-index:999999;-o-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-ms-transition:all 0.5s ease;-webkit-transition:all 0.5s ease;transition:all 0.5s ease;}
+.JAG_Circle {width:100px;height:100px;margin:0 auto;margin-top:-50px;border:5px solid #ffe400;border-radius:200px;z-index:999999;}
+.JAG_horizonLine .JAG_Circle {
+	border-bottom:0;border-right:0;border-left:0;
+	background: -moz-linear-gradient(top,  rgba(255,228,0,1) 0%, rgba(255,228,0,0) 50%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,228,0,1)), color-stop(50%,rgba(255,228,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,228,0,1) 0%,rgba(255,228,0,0) 50%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,228,0,1) 0%,rgba(255,228,0,0) 50%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,228,0,1) 0%,rgba(255,228,0,0) 50%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,228,0,1) 0%,rgba(255,228,0,0) 50%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */}
+.JAG_GroundLine .JAG_Circle {
+	border-top:0;border-right:0;border-left:0;
+	background: -moz-linear-gradient(top,  rgba(255,228,0,0) 50%, rgba(255,228,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,rgba(255,228,0,0)), color-stop(100%,rgba(255,228,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,228,0,0) 50%,rgba(255,228,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,228,0,0) 50%,rgba(255,228,0,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,228,0,0) 50%,rgba(255,228,0,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,228,0,0) 50%,rgba(255,228,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */}
+	
+	
+/******************************************************************************/
+/* ADDONS
+/******************************************************************************/
+/*************************/
+/* RIDDLES AND PASSWORDS */
+/*************************/
+#JAG_Riddle_Answer {
+	width:100%; 
+	height:212px;
+	padding:0; 
+	margin:0; 
+	position:absolute; 
+	z-index:16; 
+	display:none; 
+	opacity:0;
+	border:0;}
+
+#JAG_Riddle_Answer input {
+	display:block;
+	width:900px;
+	margin:0 auto;
+	margin-top:70px;
+	border:0; 
+	outline:none; 
+	text-align:center;}
+	
+/*****************/
+/* MAP CUTSCENES */
+/*****************/
+ul.JAG_Chapter div.JAG_Destination {
+	display:block;
+	position:absolute;
+	z-index:17;
+	background:#ff0000;
+	width:20px;
+	height:20px;
+	border-radius:15px;
+}
+
+ul.JAG_Chapter div.JAG_Current_Marker {
+	display:block;	
+	position:absolute;
+	z-index:17;
+	background:#ff0000;
+	width:15px;
+	height:15px;
+	border-radius:15px;
+	border:4px solid transparent;
+	background-clip:padding-box;
+	box-shadow:0px 0px 0px 2px rgba(255,0,0,0.5);
+	-webkit-animation: DestinationMarker 0.75s infinite alternate; 
+	animation:         DestinationMarker 0.75s infinite alternate;
+}
+
+ul.JAG_Chapter div.JAG_Destination_Popup {
+	position:absolute;
+	z-index:18;
+	font-weight:bold;
+	font-size:24px;
+}
+
+@-webkit-keyframes DestinationMarker {
+  0%   { transform:scale(1,1); 
+  		 opacity:0.5; 
+ 	 	 box-shadow:0px 0px 0px 0px rgba(255,0,0,0);}
+  100% { transform:scale(1.5,1.5); 
+  		 opacity:1; 
+	 	 box-shadow:0px 0px 0px 2px rgba(255,0,0,0.5);}
+}
+@keyframes DestinationMarker {
+  0%   { transform:scale(1,1); 
+  		 opacity:0.5; 
+ 	 	 box-shadow:0px 0px 0px 0px rgba(255,0,0,0);}
+  100% { transform:scale(1.5,1.5); 
+  		 opacity:1; 
+	 	 box-shadow:0px 0px 0px 2px rgba(255,0,0,0.5); }
+}
+
+/*****************/
+/* PUZZLE TIMERS */
+/*****************/
+.JAG_PuzzleTimer { position:absolute; z-index:99; opacity:0; display:none; }
+.JAG_PuzzleTimer p.JAG_timer_countdown { color:#FFF; }

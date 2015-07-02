@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* 	THIS STYLESHEET IS USED FOR ANY SPECIAL ITEM STYLING REQUIRED FOR YOUR GAME 
+THAT SHOULDN'T BE ADDED TO THE CORE JAGUAR CSS FILE. THAT MAJORITY OF THIS FILE
+WILL CONTAIN EXIT DIMENSIONS THAT YOU ASSIGN WITH YOUR CLASSES. */
+body{margin:0;}
+#wrapper {width:64.25em;}
+
+.lava_fountain_exit1 {width:12.5em; height:11.25em;}
+
+.to_lava_fountain_exit1 {width:10.625em; height:5em;}
+.to_lava_fountain_exit2 {width:6.25em; height:12.5em;}
+
+.lucasarts_cave_exit1 {width:12.5em; height:9.375em;}
+.lucasarts_cave_exit2 {width:34.375em; height:3.125em;}
+
+.main_catacombs_exit1 {width:5em; height:7.5em;}
+.main_catacombs_exit2 {width:5em; height:7.5em;}
+
+.ice_caves_exit1 {width:34.375em; height:3.125em;}
+.ice_caves_exit2 {width:5em; height:5em;}
+.railing {width:4.6875em; height:12.3125em;}
+.desk {width:14.875em; height:8.125em;}
+.chair {width:9.3125em; height:15em;}
+.library_boxes1 {width:7.0625em; height:4.375em;}
+.library_boxes2 {width:4.25em; height:2.75em;}
+
+.catacomb_entrance_exit1 {width:5em; height:6.25em;}
+.catacomb_entrance_exit2 {width:9.375em; height:3.75em;}
+
+.desert_expanse_exit1 {width:34.375em; height:3.125em;}
+.jeep {width:6.25em; height:6.25em;}
+
+.college_exit1 {width:1.875em; height:6.25em;}
+.college_exit2 {width:8.75em; height:12.5em;}
+.college_exit3 {width:18.75em; height:9.375em;}
+
+.dig_exit1 {width:25em; height:6.25em;}
+.exit_in_dig {width:12.5em; height:6.25em;}
+
+.library_exit1 {width:2.5em; height:6.25em;}
+.book {width:1.875em; height:3.75em;}
+.ice {width:3.125em; height:3.125em;}
+.box{width:9.25em; height:5.8125em;}
+.exit_city_street {width:15.625em; height:6.25em;}
+.exit_apartment {width:3.125em; height:25em;}
+.car {width:15.625em; height:9.375em;}
+.rock {width:13.875em; height:12.0625em;}
+.office_exit1 {width:4.375em; height:7.5em;}
+
+.boat, .boat_exit {width:13.75em; height:6.25em;}
+.ticket {width:3.125em; height:3.125em;}
+.truck {width:24.0625em; height:15.75em;}
+.dig_bench {width:16.75em; height:9.6875em;}
+.plant {width:12.3125em; height:17.8125em;}
+.lucasarts_logo {width:4.375em; height:4.375em;}
+
+
+
+.title_text {
+	outline:.0625em solid transparent;
+	-webkit-animation: title 1s infinite alternate; 
+	animation:         title 1s infinite alternate;}
+
+@-webkit-keyframes title {
+  0%   { transform:scale(1,1); }
+  100% { transform:scale(1.2,1.2); }
+}
+@keyframes title {
+  0%   { transform:scale(1,1); }
+  100% { transform:scale(1.2,1.2); }
